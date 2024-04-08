@@ -102,7 +102,7 @@ public class Datas : MonoBehaviour
     public void CreateXML()
     {
         // Using xmlSerializer. An instance is created that passes the type of data, which is going to be translated.
-        var XmlSerializer = new XmlSerializer(typeof(X_values[]));
+        var XmlSerializer = new XmlSerializer(float);
 
         // Here a filestream is used. This wraps it in a code block and closes it
         using (FileStream stream = File.Create(_xmlMembers))
@@ -117,13 +117,13 @@ public class Datas : MonoBehaviour
         if (File.Exists(_xmlMembers))
         {
             // Here we do the same as above
-            var xmlSerializer = new XmlSerializer(typeof(X_values[]));
+            var xmlSerializer = new XmlSerializer(typeof(Array));
 
             //The same here, but here we openread instead of creating a file. 
             using (FileStream stream = File.OpenRead(_xmlMembers))
             {
                 // Here a variable is created to hold the deserialized values.  
-                var members = ()xmlSerializer.Deserialize(stream);
+                var members = (Array)xmlSerializer.Deserialize(stream);
 
             }
         }
